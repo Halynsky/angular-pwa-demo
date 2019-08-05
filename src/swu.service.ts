@@ -16,7 +16,6 @@ export class SwuService {
     console.log('initUpdatePing');
     const appIsStable$ = this.appRef.isStable.pipe(first(), tap(isStable => {
       console.log('App is stable');
-      // this.initLog();
     }));
 
     const updatePeriod$ = interval(10 * 1000);
@@ -30,8 +29,8 @@ export class SwuService {
 
   public init(): void {
     console.log('SwuService init');
-    // this.initUpdatePing();
     this.initLog();
+    // this.initUpdatePing();
   }
 
   private promptUser(event): boolean {
