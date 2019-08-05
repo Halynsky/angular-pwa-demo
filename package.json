@@ -2,14 +2,10 @@
   "name": "angular-pwa-demo",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "express": "set PORT=3334 && node server.js"
+    "static-server": "set PORT=3334 && node server.js"
   },
   "private": true,
   "dependencies": {
