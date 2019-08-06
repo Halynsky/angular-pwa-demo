@@ -14,27 +14,40 @@ export class SwuService {
 
   initUpdatePing() {
     console.log('initUpdatePing');
-    const appIsStable$ = this.appRef.isStable.pipe(first(), tap(isStable => {
-      console.log('App is stable');
-    }));
+    // const appIsStable$ = this.appRef.isStable.pipe(first(), tap(isStable => {
+    //   console.log('App is stable');
+    // }));
+    //
+    // const updatePeriod$ = interval(10 * 1000);
+    //
+    // updatePeriod$.subscribe(event => {
+    //   console.log('Interval');
+    //   // this.swUpdate.checkForUpdate();
+    // });
 
-    const updatePeriod$ = interval(10 * 1000);
-    const updatePeriodOnceAppIsStable$ = concat(appIsStable$, updatePeriod$);
+    // const updatePeriodOnceAppIsStable$ = concat(appIsStable$, updatePeriod$);
+    //
+    // updatePeriodOnceAppIsStable$.subscribe(() => {
+    //   console.log('checkForUpdate');
+    //   this.swUpdate.checkForUpdate().then(event => console.log('event', event)).catch(e => console.error('error', e));
+    // });
 
-    updatePeriodOnceAppIsStable$.subscribe(() => {
-      console.log('checkForUpdate');
-      this.swUpdate.checkForUpdate().then(event => console.log(event)).catch(e => console.log(e));
-    });
+    // const appIsStable$ = this.appRef.isStable.pipe(first(isStable => isStable === true));
+    // const everySixHours$ = interval(10 * 1000);
+    // const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
+    //
+    // everySixHoursOnceAppIsStable$.subscribe(() => this.swUpdate.checkForUpdate());
+
   }
 
   public init(): void {
     console.log('SwuService init');
-    this.initLog();
-    // this.initUpdatePing();
+    this.initCheck();
+    this.initUpdatePing();
   }
 
   private promptUser(event): boolean {
-    console.log('New version of service available');
+    console.log('Prompting user about new version');
     if (this.prompting) {
       return;
     }
@@ -45,7 +58,7 @@ export class SwuService {
     return true;
   }
 
-  initLog() {
+  initCheck() {
     this.swUpdate.available.subscribe(event => {
       console.log('current version is', event.current);
       console.log('available version is', event.available);
